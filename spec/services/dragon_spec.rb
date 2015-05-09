@@ -1,4 +1,4 @@
-require 'services/dragon_feeding_service'
+require_relative '../../app/services/dragon_feeding_service'
 describe DragonFeedingService do
   # How to describ services, when they have .call only?
 

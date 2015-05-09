@@ -11,3 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Vim swap files
+.swp
+.swo

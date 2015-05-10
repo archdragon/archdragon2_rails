@@ -6,6 +6,6 @@ class Dragon
   end
   def ate_today?
     # Dragon can eat once per day
-    FeedingTime.new(feeding_time) != FeedingTime.new(Time.now)
+    FeedingTime.new(feeding_time) == FeedingTime.new(Time.now)
   end
 end

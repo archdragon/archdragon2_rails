@@ -12,6 +12,9 @@ describe DragonFeedingService do
     let(:foodItem) { FoodItem.new }
 
     context 'if the dragon didn\'t eat anything today' do
+      before do
+        allow(dragon).to receive(:feeding_time) { Time.new(1900) }
+      end
       it 'feeds the dragon' do
         feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
         expect(feeding_service).to be_kind_of(ArchService::Response::Success)
@@ -19,6 +22,9 @@ describe DragonFeedingService do
     end
 
     context 'if the dragon ate something today' do
+      before do
+        allow(dragon).to receive(:feeding_time) { Time.now }
+      end
       it 'returns an error' do
         feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
         expect(feeding_service).to be_kind_of(ArchService::Response::Error)

@@ -1,23 +1,28 @@
-require_relative '../../lib/arch_service/arch_service'
-require_relative '../../app/services/dragon_feeding_service'
+require 'active_model'
+require_relative '../../lib/arch_form/arch_form'
+require_relative '../../app/forms/dragon_feeding_form'
 require_relative '../../app/models/dragon'
 
-describe DragonFeedingService do
-  # How to describe services, when they have .call only?
+describe DragonFeedingForm do
 
   FoodItem = Class.new
 
   context 'with proper dragon and food' do
     let(:dragon)   { Dragon.new }
-    let(:foodItem) { FoodItem.new }
+    let(:food_item) { FoodItem.new }
 
     context 'if the dragon didn\'t eat anything today' do
       before do
         allow(dragon).to receive(:feeding_time) { Time.new(1900) }
       end
       it 'feeds the dragon' do
-        feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
-        expect(feeding_service).to be_kind_of(ArchService::Response::Success)
+        form = DragonFeedingForm.new(dragon: dragon, food_item: food_item)
+        status = form.submit
+      end
+      it 'works without error' do
+        form = DragonFeedingForm.new(dragon: dragon, food_item: food_item)
+        status = form.submit
+        expect(status).to be_kind_of(Arch::Response::Success)
       end
     end
 
@@ -26,9 +31,11 @@ describe DragonFeedingService do
         allow(dragon).to receive(:feeding_time) { Time.now }
       end
       it 'returns an error' do
-        feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
-        expect(feeding_service).to be_kind_of(ArchService::Response::Error)
+        form = DragonFeedingForm.new(dragon: dragon, food_item: food_item)
+        status = form.submit
+        expect(status).to be_kind_of(ArchResponse::Error)
       end
     end
   end
 end
+

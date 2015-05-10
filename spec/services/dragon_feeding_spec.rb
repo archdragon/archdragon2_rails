@@ -7,12 +7,21 @@ describe DragonFeedingService do
 
   FoodItem = Class.new
 
-  context "with proper dragon and food" do
+  context 'with proper dragon and food' do
     let(:dragon)   { Dragon.new }
     let(:foodItem) { FoodItem.new }
-    it "can feed the dragon only once per day" do
-      feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
-      expect(feeding_service).to be_kind_of(ArchService::Response::Success)
+    context 'if the dragon didn\'t eat anything today' do
+      it 'feeds the dragon' do
+        feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
+        expect(feeding_service).to be_kind_of(ArchService::Response::Success)
+      end
+    end
+
+    context 'if the dragon ate something today' do
+      it 'returns an error' do
+        feeding_service = DragonFeedingService.call!(dragon: dragon, foodItem: foodItem)
+        expect(feeding_service).to be_kind_of(ArchService::Response::Error)
+      end
     end
   end
 end

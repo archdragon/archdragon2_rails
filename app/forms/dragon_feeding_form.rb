@@ -1,9 +1,24 @@
+# Validates dragon feeding action
 class DragonFeedingForm < ArchForm::Base
-  def self.call!(dragon:, foodItem:)
-    if !dragon.ate_today?
-      return ArchService::Response::Success.new
+  attr_accessor :dragon, :food_item
+
+  validate :dragon_didnt_eat_today
+
+  def initialize(dragon:, food_item:)
+    self.dragon    = dragon
+    self.food_item = food_item
+  end
+
+  def submit
+    if valid?
+      return ArchResponse::Success.new
     else
-      return ArchService::Response::Error.new
+      return ArchResponse::Error.new
     end
   end
+
+  def dragon_didnt_eat_today
+    errors.add(:dragon, 'has already eaten today') if dragon.ate_today?
+  end
 end
+

@@ -13,6 +13,9 @@ class Dragon
   def eat(food_item)
     hunger.add_from(food_item)
   end
+  def owner
+    1
+  end
   def ate_today?
     meal_time = FeedingTime.new(feeding_time)
     meal_time.is_today?

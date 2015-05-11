@@ -11,6 +11,7 @@ class DragonFeedingForm < ArchForm::Base
 
   def submit
     if valid?
+      dragon.eat(food_item)
       return ArchResponse::Success.new
     else
       return ArchResponse::Error.new
@@ -21,4 +22,3 @@ class DragonFeedingForm < ArchForm::Base
     errors.add(:dragon, 'has already eaten today') if dragon.ate_today?
   end
 end
-

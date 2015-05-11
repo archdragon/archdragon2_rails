@@ -15,6 +15,9 @@ class DragonHunger
     @hunger += points
     clamp
   end
+  def add_from(item)
+    change(item.hunger_change)
+  end
   def clamp
     @hunger = MAX_HUNGER if @hunger > MAX_HUNGER
     @hunger = MIN_HUNGER if @hunger < MIN_HUNGER

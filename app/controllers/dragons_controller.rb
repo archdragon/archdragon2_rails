@@ -1,4 +1,4 @@
-class DragonController < ApplicationController
+class DragonsController < ApplicationController
   def feed
     DragonFeedingForm.call!(
       dragon: Dragon.new(user: User.new),

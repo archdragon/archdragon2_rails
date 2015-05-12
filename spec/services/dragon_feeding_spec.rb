@@ -1,14 +1,4 @@
-require_relative '../../lib/arch_response/arch_response'
-require_relative '../../lib/arch_service/arch_service'
-require_relative '../../app/services/feed_dragon_service'
-require_relative '../../app/models/dragon'
-require_relative '../../app/models/user'
-require_relative '../../app/models/food_item'
-
-class RemoveItemService < ArchService::Base
-  def self.call!(item:, user:, count:)
-  end
-end
+require 'light_helper'
 
 describe FeedDragonService do
   context 'when called with valid dragon and item' do
@@ -24,12 +14,10 @@ describe FeedDragonService do
       )
       expect(removal).to have_received(:call!) { ArchResponse::Success.new }
     end
+
     context 'if the dragon is hungry' do
       let(:hungry_dragon) { Dragon.new(user: User.new) }
-
-      before do
-        hungry_dragon.make_hungry!
-      end
+      before { hungry_dragon.make_hungry! }
 
       it 'makes it less hungry' do
         hunger_before_feeding = hungry_dragon.hunger_level
@@ -44,4 +32,3 @@ describe FeedDragonService do
     end
   end
 end
-

@@ -1,8 +1,8 @@
-class DragonController
+class DragonController < ApplicationController
   def feed
-    FeedDragonService.call!(
-      dragon:,
-      food_item:
+    DragonFeedingForm.call!(
+      dragon: Dragon.new(user: User.new),
+      food_item: FoodItem.new
     )
   end
 end

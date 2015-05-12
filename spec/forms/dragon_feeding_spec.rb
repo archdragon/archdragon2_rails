@@ -1,13 +1,8 @@
-require 'active_model'
-require_relative '../../lib/arch_form/arch_form'
-require_relative '../../lib/arch_response/arch_response'
-require_relative '../../app/forms/dragon_feeding_form'
-require_relative '../../app/models/dragon'
-require_relative '../../app/models/food_item'
+require 'light_helper'
 
 describe DragonFeedingForm do
   context 'with proper dragon and food' do
-    let(:dragon)    { Dragon.new }
+    let(:dragon)    { Dragon.new(user: User.new) }
     let(:food_item) { FoodItem.new }
 
     context 'if the dragon didn\'t eat anything today' do

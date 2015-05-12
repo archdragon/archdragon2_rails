@@ -11,7 +11,10 @@ class DragonFeedingForm < ArchForm::Base
 
   def submit
     if valid?
-      dragon.eat(food_item)
+      FeedDragonService.call!(
+        dragon: dragon,
+        food_item: food_item
+      )
       return ArchResponse::Success.new
     else
       return ArchResponse::Error.new

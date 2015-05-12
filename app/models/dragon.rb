@@ -3,9 +3,11 @@ require_relative '../../app/models/dragon_hunger'
 
 class Dragon
   attr_accessor :hunger
+  attr_accessor :user
 
-  def initialize(hunger = DragonHunger.new)
+  def initialize(user:, hunger: DragonHunger.new)
     self.hunger = hunger
+    self.user = user
   end
   def feeding_time
     Time.now
@@ -15,6 +17,15 @@ class Dragon
   end
   def owner
     1
+  end
+  def hunger_level
+    hunger.to_i
+  end
+  def make_hungry!
+    hunger.set(:highest_level)
+  end
+  def satiate!
+    hunger.set(:lowest_level)
   end
   def ate_today?
     meal_time = FeedingTime.new(feeding_time)

@@ -39,10 +39,19 @@ class Dragon
     hunger.set(:lowest_level)
   end
   def ate_today?
-    meal_time = FeedingTime.new(feeding_time)
-    meal_time.is_today?
+    feeding_time.is_today?
+  end
+  def can_eat_now?
+    !ate_today?
   end
   def feeding_time
-    Time.now
+    FeedingTime.today
+  end
+  def next_feeding_time
+    if ate_today?
+      FeedingTime.tomorrow
+    else
+      FeedingTime.today
+    end
   end
 end

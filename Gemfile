@@ -17,6 +17,9 @@ gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim'
 
+# My gems
+gem 'arch_presenter'
+
 # Deployment
 gem 'capistrano-rails', group: :development
 
@@ -27,6 +30,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rubocop'
+  gem 'rack-mini-profiler'
 end
 
 group :test do

@@ -4,6 +4,10 @@ class Dragon
   STAGE_EGG   = 'egg'
   STAGE_YOUNG = 'young'
   STAGE_OLD   = 'old'
+
+  ELEMENT_WATER = 'water'
+  ELEMENT_FIRE = 'fire'
+
   attr_accessor :hunger, :user, :image
 
   def initialize(user:, hunger: DragonHunger.new)
@@ -15,6 +19,9 @@ class Dragon
   end
   def growth_stage
     return STAGE_EGG
+  end
+  def element
+    return ELEMENT_WATER
   end
 
   # Hunger and food

@@ -1,22 +1,26 @@
-require_relative '../../lib/feeding_time'
-require_relative '../../app/models/dragon_hunger'
-
+# Represents a beast owned by the player..
+# Central to the project.
 class Dragon
-  attr_accessor :hunger
-  attr_accessor :user
+  STAGE_EGG   = 'egg'
+  STAGE_YOUNG = 'young'
+  STAGE_OLD   = 'old'
+  attr_accessor :hunger, :user, :image
 
   def initialize(user:, hunger: DragonHunger.new)
     self.hunger = hunger
     self.user = user
   end
-  def feeding_time
-    Time.now
+  def owner
+    user
   end
+  def growth_stage
+    return STAGE_EGG
+  end
+
+  # Hunger and food
+  # move -> concerns ?
   def eat(food_item)
     hunger.add_from(food_item)
-  end
-  def owner
-    1
   end
   def hunger_level
     hunger.to_i
@@ -30,5 +34,8 @@ class Dragon
   def ate_today?
     meal_time = FeedingTime.new(feeding_time)
     meal_time.is_today?
+  end
+  def feeding_time
+    Time.now
   end
 end

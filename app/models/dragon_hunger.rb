@@ -2,8 +2,10 @@ class DragonHunger
   MAX_HUNGER = 100
   MIN_HUNGER = 0
 
-  def initialize(hunger_level: 0)
-    @hunger_level = hunger_level
+  attr_accessor :hunger_level
+
+  def initialize(hunger_level: MIN_HUNGER)
+    self.hunger_level = hunger_level
   end
   def add(points)
     change(points)
@@ -12,17 +14,17 @@ class DragonHunger
     change(0 - points)
   end
   def change(points)
-    @hunger_level += points
-    @hunger_level = clamp(@hunger_level)
+    self.hunger_level += points
+    self.hunger_level = clamp(@hunger_level)
   end
   def add_from(item)
     change(item.hunger_change)
   end
   def to_i
-    @hunger_level
+    self.hunger_level
   end
   def set(level_name)
-    @hunger_level = case level_name
+    self.hunger_level = case level_name
     when :highest_level
       MAX_HUNGER
     when :lowest_level

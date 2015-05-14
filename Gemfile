@@ -31,6 +31,7 @@ group :development, :test do
   gem 'spring'
   gem 'rubocop'
   gem 'rack-mini-profiler'
+  gem 'factory_girl'
 end
 
 group :test do

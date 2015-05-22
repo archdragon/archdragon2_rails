@@ -1,4 +1,4 @@
-require 'light_helper'
+require_relative '../light_helper'
 
 describe DragonFeedingForm do
   context 'with proper dragon and food' do
@@ -7,7 +7,7 @@ describe DragonFeedingForm do
 
     context 'if the dragon didn\'t eat anything today' do
       before do
-        expect(dragon).to receive(:feeding_time) { Time.new(1900) }
+        expect(dragon).to receive(:feeding_time) { FeedingTime.yesterday }
       end
       it 'informs about success' do
         form = DragonFeedingForm.new(dragon: dragon, food_item: food_item)
@@ -18,7 +18,7 @@ describe DragonFeedingForm do
 
     context 'if the dragon ate something today' do
       before do
-        expect(dragon).to receive(:feeding_time) { Time.now }
+        expect(dragon).to receive(:feeding_time) { FeedingTime.today }
       end
       it 'informs about failure' do
         form = DragonFeedingForm.new(dragon: dragon, food_item: food_item)
@@ -26,5 +26,6 @@ describe DragonFeedingForm do
         expect(status).to be_kind_of(ArchResponse::Error)
       end
     end
+
   end
 end

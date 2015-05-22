@@ -1,4 +1,4 @@
-require 'light_helper'
+require_relative '../light_helper'
 
 describe FeedDragonService do
   context 'when called with valid dragon and item' do

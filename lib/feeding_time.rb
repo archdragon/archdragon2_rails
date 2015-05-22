@@ -2,20 +2,20 @@
 # Dragons can be fed only once per day, so during comparition
 # FeedingTime cares only about D/M/Y
 class FeedingTime
-  def initialize(time = Time.now)
+  def initialize(time: Time.now)
     @time = time.beginning_of_day
   end
 
   def self.today
-    new
+    new(time: Time.now)
   end
 
   def self.tomorrow
-    new(Time.now + 1.day)
+    new(time: Time.now + 1.day)
   end
 
   def self.yesterday
-    new(Time.now - 1.days)
+    new(time: Time.now - 1.days)
   end
 
   def to_i

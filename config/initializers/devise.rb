@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '5f2956b1f0861b048cb5da35851f04676fc524a480d029585ac1927ca476b469492b206b20e113454cca8db0435db8a05ab6c778e7960597f8caeb4caa38d4f9'
+  # config.secret_key = '5a7517fda0fae4e4e1b3249e1d0e92d36edf5d40cf3ca4284f6868987258fa336942de1f889157aff8b4982535952ac362095f94f1da6cda6e1e0139c5383825'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -41,12 +41,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [ :email, :name ]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [ :email, :name ]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '1efc5fe86c403c2326ea3686e8f3095e688ed637312f62f7ae562d201f6d460781ef3b344fe94292b47ccb50acc2789db39ece9e8a125b1880fe47a29ccaab25'
+  # config.pepper = 'f88ced4c64516c907c14c8af297eade59830c9b268525df5ba979eef65c67a7afe7026cd1b3a370ec9beddf71792fb69089c20f761ec7fbcc246377dee43c3e4'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -189,7 +189,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 72.hours
 
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use

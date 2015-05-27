@@ -3,6 +3,19 @@ require 'active_support/all'
 require 'arch_presenter'
 require 'factory_girl'
 
+## Fake active record
+module ActiveRecord
+  class Base
+    def self.devise(*args)
+    end
+    def self.before_save(*args)
+    end
+  end
+end
+
+
+## Additional folders
+
 folders = ['models', 'services', 'forms', 'presenters']
 
 Dir[__dir__ + '/../lib/**/*.rb'].each {|file| require file }

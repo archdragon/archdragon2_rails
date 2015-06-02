@@ -13,5 +13,5 @@
 /tmp
 
 # Vim swap files
-.swp
-.swo
+*.swp
+*.swo

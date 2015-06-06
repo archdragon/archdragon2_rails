@@ -1,0 +1,1 @@
+curl -IH "Authorization: Token token=402e8fdf48da4ec1aa8508696ca0d978" http://localhost:3000/welcome/index2

@@ -5,6 +5,9 @@ gem 'rails', '4.2.1'
 # Models
 gem 'pg'
 
+# Controllers
+gem 'active_model_serializers'
+
 # Authentication
 gem 'devise'
 
